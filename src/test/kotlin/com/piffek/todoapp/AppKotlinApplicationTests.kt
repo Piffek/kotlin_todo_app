@@ -1,4 +1,4 @@
-package com.example.appkotlin
+package com.piffek.todoapp
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
