@@ -8,8 +8,8 @@ plugins {
     kotlin("plugin.jpa") version "1.6.21"
 }
 
-group = "com.example"
-version = "0.0.1-SNAPSHOT"
+group = "com.piffek"
+version = "1.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {

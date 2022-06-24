@@ -1,4 +1,4 @@
-package com.example.appkotlin
+package com.piffek.todoapp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
