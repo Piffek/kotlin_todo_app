@@ -39,6 +39,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
     runtimeOnly("org.postgresql:postgresql")
+    implementation("org.flywaydb:flyway-core:8.5.13")
 }
 
 tasks.withType<KotlinCompile> {
