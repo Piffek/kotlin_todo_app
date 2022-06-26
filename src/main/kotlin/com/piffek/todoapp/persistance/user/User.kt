@@ -1,5 +1,6 @@
-package com.piffek.todoapp.persistance
+package com.piffek.todoapp.persistance.user
 
+import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -10,5 +11,8 @@ class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int?=null;
+    val id: Int?=null
+
+    @Column
+    val name: String?=null
 }
