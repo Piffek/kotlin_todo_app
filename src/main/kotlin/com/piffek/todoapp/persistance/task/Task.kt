@@ -1,10 +1,8 @@
 package com.piffek.todoapp.persistance.task
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.piffek.todoapp.persistance.subtask.Subtask
+import javax.persistence.*
 
 @Entity
 @Table(name = "TASK")
@@ -15,5 +13,11 @@ data class Task(
     val id: Long,
 
     @Column(name = "name")
-    val name: String
+    val name: String,
+
+    @Column(name = "rejected")
+    val rejected: Boolean,
+
+    @OneToMany(mappedBy = "taskId", fetch = FetchType.EAGER)
+    val subtasks: Set<Subtask>
 )
