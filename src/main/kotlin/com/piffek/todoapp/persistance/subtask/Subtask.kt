@@ -1,27 +1,21 @@
 package com.piffek.todoapp.persistance.subtask
 
+import org.hibernate.annotations.Type
 import java.time.LocalDateTime
+import java.util.*
 import javax.persistence.*
 
 @Entity
 @Table(name = "SUBTASK")
-@SecondaryTable(
-    name = "SUBTASK_DESCRIPTION",
-    pkJoinColumns = [PrimaryKeyJoinColumn(
-        name = "subtask_id",
-        referencedColumnName = "id"
-    )]
-)
 data class Subtask(
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    val id: Long,
+    @Type(type = "pg-uuid")
+    val id: UUID,
 
     @Column(name = "title")
     val titie: String,
 
-    @Column(table = "SUBTASK_DESCRIPTION")
+    @Column(name = "description")
     val description: String,
 
     @Column(name = "deadline")
@@ -37,5 +31,5 @@ data class Subtask(
     val rejected: Boolean,
 
     @Column(name = "taskId")
-    val taskId: Long
+    val taskId: UUID
 )
