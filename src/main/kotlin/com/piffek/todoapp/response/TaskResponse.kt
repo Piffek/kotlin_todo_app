@@ -1,9 +1,10 @@
 package com.piffek.todoapp.response
 
 import com.piffek.todoapp.persistance.task.Task
+import java.util.*
 
 data class TaskResponse(
-    val id: Long,
+    val id: UUID,
     val name: String,
     val rejected: Boolean,
     val subtasks: Set<SubtaskResponse>
