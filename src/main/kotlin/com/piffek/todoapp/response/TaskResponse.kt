@@ -9,16 +9,16 @@ data class TaskResponse(
     val rejected: Boolean,
     val subtasks: Set<SubtaskResponse>
 ) {
-    object ModelMapper {
-        fun from(task: Task) =
+    companion object : Mapper<Task, TaskResponse> {
+        override fun from(tasks: MutableList<Task>): MutableList<TaskResponse> =
+            tasks.map { from(it) }.toMutableList()
+
+        override fun from(task: Task) =
             TaskResponse(
                 task.id,
                 task.name,
                 task.rejected,
-                SubtaskResponse.ModelMapper.from(task.subtasks)
+                SubtaskResponse.from(task.subtasks)
             )
-
-        fun from(tasks: MutableList<Task>): MutableList<TaskResponse> =
-            tasks.map { from(it) }.toMutableList()
     }
 }

@@ -13,9 +13,9 @@ class TaskController(private val taskService: TaskService) {
 
     @GetMapping
     fun showAll(): MutableList<TaskResponse> =
-        TaskResponse.ModelMapper.from(taskService.findAll())
+        TaskResponse.from(taskService.findAll())
 
     @GetMapping("/subtasks/{taskId}")
     fun showAllSubtaskAssignedToTask(@PathVariable("taskId") taskId: UUID): MutableList<SubtaskResponse> =
-        SubtaskResponse.ModelMapper.from(taskService.findSubtasksForTask(taskId))
+        SubtaskResponse.from(taskService.findSubtasksForTask(taskId))
 }
