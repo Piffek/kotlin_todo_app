@@ -14,8 +14,14 @@ data class SubtaskResponse(
     val done: Boolean,
     val rejected: Boolean,
 ) {
-    object ModelMapper {
-        fun from(subtask: Subtask): SubtaskResponse =
+    companion object : Mapper<Subtask, SubtaskResponse> {
+        fun from(subtasks: Set<Subtask>): Set<SubtaskResponse> =
+            subtasks.mapTo(HashSet()) { from(it) }
+
+        override fun from(subtasks: MutableList<Subtask>): MutableList<SubtaskResponse> =
+            subtasks.map { from(it) }.toMutableList()
+
+        override fun from(subtask: Subtask): SubtaskResponse =
             SubtaskResponse(
                 subtask.id,
                 subtask.titie,
@@ -25,11 +31,5 @@ data class SubtaskResponse(
                 subtask.done,
                 subtask.rejected,
             )
-
-        fun from(subtasks: Set<Subtask>): Set<SubtaskResponse> =
-            subtasks.mapTo(HashSet<SubtaskResponse>()) { from(it) }
-
-        fun from(subtasks: MutableList<Subtask>): MutableList<SubtaskResponse> =
-            subtasks.map { from(it) }.toMutableList()
     }
 }
