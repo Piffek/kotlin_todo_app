@@ -1,10 +1,13 @@
 package com.piffek.todoapp.persistance.task
 
-import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.piffek.todoapp.persistance.subtask.Subtask
+import java.util.UUID
 import org.hibernate.annotations.Type
-import java.util.*
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.Id
+import javax.persistence.OneToMany
+import javax.persistence.Table
 
 @Entity
 @Table(name = "TASK")
@@ -13,10 +16,7 @@ data class Task(
     @Type(type = "pg-uuid")
     val id: UUID,
 
-    @Column(name = "name")
     val name: String,
-
-    @Column(name = "rejected")
     val rejected: Boolean,
 
     @OneToMany(mappedBy = "taskId", fetch = FetchType.EAGER)
