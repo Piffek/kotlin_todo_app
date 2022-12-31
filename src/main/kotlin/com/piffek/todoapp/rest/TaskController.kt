@@ -1,4 +1,4 @@
-package com.piffek.todoapp.controllers
+package com.piffek.todoapp.rest
 
 import com.piffek.todoapp.response.SubtaskResponse
 import com.piffek.todoapp.response.TaskResponse
@@ -12,10 +12,10 @@ import java.util.UUID;
 class TaskController(private val taskService: TaskService) {
 
     @GetMapping
-    fun showAll(): MutableList<TaskResponse> =
+    fun showAll(): List<TaskResponse> =
         TaskResponse.from(taskService.findAll())
 
     @GetMapping("/subtasks/{taskId}")
-    fun showAllSubtaskAssignedToTask(@PathVariable("taskId") taskId: UUID): MutableList<SubtaskResponse> =
+    fun showAllSubtaskAssignedToTask(@PathVariable("taskId") taskId: UUID): List<SubtaskResponse> =
         SubtaskResponse.from(taskService.findSubtasksForTask(taskId))
 }

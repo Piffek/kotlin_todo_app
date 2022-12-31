@@ -10,8 +10,8 @@ data class TaskResponse(
     val subtasks: Set<SubtaskResponse>
 ) {
     companion object : Mapper<Task, TaskResponse> {
-        override fun from(tasks: MutableList<Task>): MutableList<TaskResponse> =
-            tasks.map { from(it) }.toMutableList()
+        override fun from(tasks: MutableList<Task>): List<TaskResponse> =
+            tasks.map { from(it) }.toList()
 
         override fun from(task: Task) =
             TaskResponse(
