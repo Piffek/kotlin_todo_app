@@ -18,7 +18,7 @@ data class SubtaskResponse(
         fun from(subtasks: Set<Subtask>): Set<SubtaskResponse> =
             subtasks.mapTo(HashSet()) { from(it) }
 
-        override fun from(subtasks: MutableList<Subtask>): MutableList<SubtaskResponse> =
+        override fun from(subtasks: MutableList<Subtask>): List<SubtaskResponse> =
             subtasks.map { from(it) }.toMutableList()
 
         override fun from(subtask: Subtask): SubtaskResponse =
