@@ -1,6 +1,6 @@
-package com.piffek.todoapp.persistance.task
+package com.piffek.todoapp.task.persistance.entity
 
-import com.piffek.todoapp.persistance.subtask.Subtask
+import com.piffek.todoapp.subtask.persistance.entity.SubtaskSnapshot
 import java.util.UUID
 import org.hibernate.annotations.Type
 import javax.persistence.Entity
@@ -11,7 +11,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "TASK")
-data class Task(
+data class TaskSnapshot(
     @Id
     @Type(type = "pg-uuid")
     val id: UUID,
@@ -20,5 +20,5 @@ data class Task(
     val rejected: Boolean,
 
     @OneToMany(mappedBy = "taskId", fetch = FetchType.EAGER)
-    val subtasks: Set<Subtask>
+    val subtasks: Set<SubtaskSnapshot>
 )

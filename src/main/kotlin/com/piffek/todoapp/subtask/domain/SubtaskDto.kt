@@ -1,11 +1,12 @@
-package com.piffek.todoapp.response
+package com.piffek.todoapp.subtask.domain
 
-import com.piffek.todoapp.persistance.subtask.Subtask
+import com.piffek.todoapp.shared.Mapper
+import com.piffek.todoapp.subtask.persistance.entity.SubtaskSnapshot
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
 import kotlin.collections.HashSet
 
-data class SubtaskResponse(
+data class SubtaskDto(
     val id: UUID,
     val titie: String,
     val description: String,
@@ -14,17 +15,17 @@ data class SubtaskResponse(
     val done: Boolean,
     val rejected: Boolean,
 ) {
-    companion object : Mapper<Subtask, SubtaskResponse> {
-        fun from(subtasks: Set<Subtask>): Set<SubtaskResponse> =
+    companion object : Mapper<SubtaskSnapshot, SubtaskDto> {
+        fun from(subtasks: Set<SubtaskSnapshot>): Set<SubtaskDto> =
             subtasks.mapTo(HashSet()) { from(it) }
 
-        override fun from(subtasks: MutableList<Subtask>): List<SubtaskResponse> =
+        override fun from(subtasks: MutableList<SubtaskSnapshot>): List<SubtaskDto> =
             subtasks.map { from(it) }.toMutableList()
 
-        override fun from(subtask: Subtask): SubtaskResponse =
-            SubtaskResponse(
+        override fun from(subtask: SubtaskSnapshot): SubtaskDto =
+            SubtaskDto(
                 subtask.id,
-                subtask.titie,
+                subtask.title,
                 subtask.description,
                 subtask.deadline,
                 subtask.rememberHours,

@@ -1,4 +1,4 @@
-package com.piffek.todoapp.persistance.subtask
+package com.piffek.todoapp.subtask.persistance.entity
 
 import org.hibernate.annotations.Type
 import java.time.LocalDateTime
@@ -10,7 +10,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "SUBTASK")
-data class Subtask(
+data class SubtaskSnapshot(
     @Id
     @Type(type = "pg-uuid")
     val id: UUID,
@@ -18,7 +18,7 @@ data class Subtask(
     @Column(name = "rememberTime")
     val rememberHours: Int,
 
-    val titie: String,
+    val title: String,
     val description: String,
     val deadline: LocalDateTime,
     val done: Boolean,
