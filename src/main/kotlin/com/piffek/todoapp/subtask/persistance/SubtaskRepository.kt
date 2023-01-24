@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SubtaskRepository : JpaRepository<SubtaskSnapshot, UUID> {
-    fun findByTaskId(taskId: UUID): MutableList<SubtaskSnapshot>
+    fun findByTaskId(taskId: UUID): List<SubtaskSnapshot>
 }
