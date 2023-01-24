@@ -12,15 +12,15 @@ data class TaskDto(
     val subtasks: Set<SubtaskDto>
 ) {
     companion object : Mapper<TaskSnapshot, TaskDto> {
-        override fun from(tasks: MutableList<TaskSnapshot>): List<TaskDto> =
-            tasks.map { from(it) }.toList()
+        override fun from(inputList: List<TaskSnapshot>): List<TaskDto> =
+            inputList.map { from(it) }.toList()
 
-        override fun from(task: TaskSnapshot) =
+        override fun from(input: TaskSnapshot) =
             TaskDto(
-                task.id,
-                task.name,
-                task.rejected,
-                SubtaskDto.from(task.subtasks)
+                input.id,
+                input.name,
+                input.rejected,
+                SubtaskDto.from(input.subtasks)
             )
     }
 }

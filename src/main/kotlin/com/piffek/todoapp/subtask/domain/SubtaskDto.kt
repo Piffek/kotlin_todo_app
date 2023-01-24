@@ -19,18 +19,18 @@ data class SubtaskDto(
         fun from(subtasks: Set<SubtaskSnapshot>): Set<SubtaskDto> =
             subtasks.mapTo(HashSet()) { from(it) }
 
-        override fun from(subtasks: MutableList<SubtaskSnapshot>): List<SubtaskDto> =
-            subtasks.map { from(it) }.toMutableList()
+        override fun from(inputList: List<SubtaskSnapshot>): List<SubtaskDto> =
+            inputList.map { from(it) }.toMutableList()
 
-        override fun from(subtask: SubtaskSnapshot): SubtaskDto =
+        override fun from(input: SubtaskSnapshot): SubtaskDto =
             SubtaskDto(
-                subtask.id,
-                subtask.title,
-                subtask.description,
-                subtask.deadline,
-                subtask.rememberHours,
-                subtask.done,
-                subtask.rejected,
+                input.id,
+                input.title,
+                input.description,
+                input.deadline,
+                input.rememberHours,
+                input.done,
+                input.rejected,
             )
     }
 }
